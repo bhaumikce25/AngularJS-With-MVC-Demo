@@ -1,0 +1,220 @@
+﻿/* ---------- main division ---------- */
+
+.popmodel-main-body {
+
+    
+    margin:0 auto;
+    width:800px;
+    min-height:200px;
+    
+    /*background-color:red;*/
+
+}
+
+    .popmodel-main-body .popmodel-main {
+
+        width:100%;
+        float:left;
+        border:solid 1px #4579B0;
+        min-height:100px;
+        /*background-color:yellow;*/
+
+    }
+
+        .popmodel-main-body .popmodel-main .header{
+
+            width:100%;
+            float:left;
+
+             padding-top:5px;
+             padding-bottom:5px;
+    
+            border-bottom:inset 1px #4579B0;
+
+        }
+
+            .popmodel-main-body .popmodel-main .header .header-left{
+
+                    width:48%;
+                    float:left;
+
+                    margin-top:1%;
+                    margin-left:1%;
+                    margin-bottom:1%;
+                    margin-right:1%;
+
+                    background-color:white;
+
+                    color:white;
+
+            }
+
+            .popmodel-main-body .popmodel-main .header .header-right{
+
+                    width:48%;
+       
+                    float:right;
+
+                    margin-top:1%;
+                    margin-left:1%;
+                    margin-right:1%;
+                    margin-bottom:1%;
+
+                    background-color:white;
+
+                    font-size:15px;
+
+                    color:black;
+                    text-align:right;
+            }
+
+        .popmodel-main-body .popmodel-main .main-title{
+
+             width:98%;
+            float:left;
+            font-size:20px;
+            margin-left:1%;
+            margin-right:1%;
+            
+            padding-top:10px;
+            padding-bottom:5px;
+
+            
+    
+            background-color:white;
+
+        }
+
+
+        .popmodel-main-body .popmodel-main .main-content {
+
+            width:96%;
+            
+            float:left;
+
+            margin-left:1%;
+            margin-right:1%;
+            padding-left:1%;
+            padding-right:1%;
+
+            
+            padding-top:10px;
+            padding-bottom:10px;
+
+            margin-top:10px;
+
+            margin-bottom:10px;
+
+            min-height:50px;
+            
+            border:1px dotted black;
+
+            background-color:#4579B0;
+
+        }
+
+        
+/* ---------- sub division of main-content division ---------- */
+
+
+.popmodel-main-body .popmodel-main .main-content .main-content-title {
+
+            width:100%;
+            float:left;
+            font-size:18px;
+            text-align:left;
+
+            color:white;
+            
+            /*background-color:orange;*/
+
+        }
+
+
+.popmodel-main-body .popmodel-main .main-content .main-content-details{
+
+
+            width:100%;
+            
+            float:left;
+
+            margin:0%;
+
+            font-size:16px;
+            
+            
+            border:1px dotted #4579B0;
+            
+            background-color:white;
+
+        }
+
+        .popmodel-main-body .popmodel-main .main-content .main-content-details .main-content-details-title{
+
+            
+            float:left;
+
+            padding:2px 2px 2px 7px;
+ 
+            text-align:left;
+
+        }
+
+        .popmodel-main-body .popmodel-main .main-content .main-content-details .main-content-details-data{
+
+            
+            width:100%;
+            float:left;
+            font-size:15px;
+            padding-top:10px;
+            padding-bottom:10px;
+            text-align:left;
+            background-color:white;
+
+        }
+
+
+/* ---------- end of sub division of main-content division ---------- */
+
+
+
+        .popmodel-main-body .popmodel-main .model-footer{
+
+                width:100%;
+                float:left;
+
+           
+                padding-top:8px;
+                padding-bottom:8px;
+
+                font-size:12px;
+                background-color:#4579B0;
+                color:white;
+
+                text-align:center;
+
+        }
+
+
+
+/* ---------- other class ---------- */
+
+
+
+
+.color-red {
+
+    color:#4579B0;
+
+}
+
+
+
+.td-padding-top {
+    padding-top:5px;
+}
+
+.td-padding-bottom {
+    padding-bottom:5px;
+}
+

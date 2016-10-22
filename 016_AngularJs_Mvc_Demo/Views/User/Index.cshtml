@@ -1,0 +1,736 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Admin Panel</title>
+
+    @*<script src="~/JS/angular.min.js" type="text/javascript"></script>*@
+    <script src="~/JS/angular.js"></script>
+
+    <link href="~/css/Style.css" rel="stylesheet" />
+    <script src="~/JS/MyJavaScript.js"></script>
+
+    <link href="~/css/Model_Style.css" rel="stylesheet" />
+
+    <script src="~/JS/jquery.min.js"></script>
+    <script src="~/JS/jquery-2.1.4.min.js"></script>
+    <script src="~/JS/bootstrap.min.js"></script>
+    <style>
+        .highlighted {
+            background: yellow;
+        }
+    </style>
+
+</head>
+<body ng-app="CombineModule">
+
+    <div data-ng-controller="crudCtrl">
+
+        <table width="980" border="0" align="center" cellspacing="0" cellpadding="0" border="0">
+
+            <!-- 1st Row - Header-->
+            <tr>
+                <td class="header">
+                    <table cellspacing="0" cellpadding="0" border="0">
+
+                        <!-- 1A Row - Header-Right-->
+                        <tr>
+                            <td style="width: 980px; text-align: center;">
+                                &nbsp;
+                            </td>
+                        </tr>
+
+                        <!-- 1B Row - Header-Left-->
+                        <tr>
+                            <td>
+                                <h1>COMPANY NAME</h1>
+
+                            </td>
+
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+
+            <!-- 2nd Row - Menu-->
+
+            <tr>
+                <td class="menu">
+
+                    <table cellspacing="0" cellpadding="0" border="0" width="980">
+
+                        <tr>
+
+                            <td class="menu-left-corner"></td>
+
+                            <td class="menu-item"></td>
+
+                            <td class="menu-right-corner" width="5"></td>
+
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+
+
+            <!-- 3rd Row - Content-->
+
+            <tr>
+                <td>
+
+                    <table align="center" bgcolor="#ffffff" style="padding: 20px; width: 100%;" cellspacing="0" cellpadding="0" border="0">
+
+                        <!-- 3A Row - Content - Welcome-->
+
+                        <tr>
+
+                            <td>
+
+                                <h2>Welcome To Company</h2>
+
+                                <hr />
+
+                                <span style="float: right">
+                                    <a data-ng-click="showUserAddModel()" href="javascript:;">+ Add User</a>
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                        <!-- 3B Row - Content - Space-->
+
+                        <tr>
+
+                            <td></td>
+
+                        </tr>
+
+
+                        <!-- 3B Row - Content - Space-->
+
+                        <tr>
+
+                            <td>
+
+
+                                <table class="table" width="30%">
+                                    <tr>
+                                        <td>First Name:</td>
+                                        <td align="left"><input type="text" id="TextFirstName" ng-model="searchString" /></td>
+                                        <td>
+                                            <span>
+                                                <a data-ng-click="refresh()">
+                                                    <img src="~/Images/refresh.jpg" alt="Refresh" style="height: 17px;" />
+                                                </a>
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                    @*<tr>
+                                            <td></td>
+                                            <td align="left">
+                                                <input type="button" id="btnSearch" value="Search"/>
+                                            </td>
+                                            <td></td>
+                                        </tr>*@
+                                </table>
+
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                &nbsp;
+
+                            </td>
+
+                        </tr>
+
+                        <!-- 3B Row - Content - Table-->
+
+                        <tr>
+
+                            <td>
+
+                                <table class="grid" align="center" cellspacing="0" cellpadding="0" border="0">
+
+                                    <tr class="grid-top">
+                                        <th style="cursor:pointer;" ng-click="orderByMe('UserID')">Index</th>
+                                        <th style="cursor:pointer;" ng-click="orderByMe('FName')">First Name <span class="glyphicon sort-icon" ng-show="orderKey=='FName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                                        <th style="cursor:pointer;" ng-click="orderByMe('LName')">Last Name <span class="glyphicon sort-icon" ng-show="orderKey=='LName'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                                        <th style="cursor:pointer;" ng-click="orderByMe('Email')">Email <span class="glyphicon sort-icon" ng-show="orderKey=='Email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span></th>
+                                        <th colspan="4">Action</th>
+                                    </tr>
+
+                                    <tr ng-show="users!='undefined' && users!='null' && users.length!=0" data-ng-repeat="x in filteredUsers = (users | filter:searchString | orderBy:orderKey:reverse)" ng-bind-html="x | highlight:searchString" ng-include="getTemplate(x)">
+                                        <script type="text/ng-template" id="display">
+                                            <td style="width: 50px;" ng-click="reset()">{{$index + 1}}</td>
+                                            <td style="width: 170px;" ng-click="inlineEditUser(x)">{{x.FName}}</td>
+                                            <td style="width: 170px;" ng-click="inlineEditUser(x)">{{x.LName}}</td>
+                                            <td ng-click="inlineEditUser(x)">{{x.Email}}</td>
+                                            <td align="center" style="width: 50px; border-right: 0px;">
+                                                <a data-ng-click="showUserViewModel(x)" href="javascript:;">
+                                                    <img src="../../Images/ic_View_icon_blue.png" alt="View" style="height: 25px; width: 30px;" />
+                                                </a>
+                                            </td>
+                                            <td align="center" style="width: 50px; border-right: 0px; border-left: 0px;">
+
+                                                <a data-ng-click="showUserEditModel(x)" href="javascript:;">
+                                                    <img src="../../Images/edit.png" alt="Edit" />
+                                                </a>
+                                            </td>
+                                            <td align="center" style="width: 50px; border-left: 0px;">
+                                                <a data-ng-click="showConfirmDialog(x)" href="javascript:;">
+                                                    <img src="../../Images/delete.png" alt="Delete" />
+                                                </a>
+                                            </td>
+                                        </script>
+
+                                        <script type="text/ng-template" id="edit">
+                                            <td style="width: 50px;" ng-click="reset()">{{$index + 1}}</td>
+                                            <td style="width: 200px;">
+                                                <input type="text" id="textFirstName" name="txtFname" data-ng-model="user.FName" />
+                                                <span style="color:red" ng-show="userForm.txtFname.$dirty && userForm.txtFname.$invalid">
+                                                    <span ng-show="userForm.txtFname.$error.required">*</span>
+                                                </span>
+                                            </td>
+                                            <td style="width: 200px;">
+                                                <input type="text" id="textLastName" name="txtLname" data-ng-model="user.LName" />
+                                                <span style="color:red" ng-show="userForm.txtLname.$dirty && userForm.txtLname.$invalid">
+                                                    <span ng-show="userForm.txtLname.$error.required">*</span>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="textEmail" name="txtEmail" data-ng-model="user.Email" />
+                                                <span style="color:red" ng-show="userForm.txtEmail.$dirty && userForm.txtEmail.$invalid">
+                                                    <span ng-show="userForm.txtEmail.$error.required">*</span>
+                                                    <span ng-show="userForm.txtEmail.$error.email">Invalid email address.</span>
+                                                </span>
+                                            </td>
+                                            <td colspan="3" align="center">
+
+                                                <input type="submit" ng-click="update()" ng-disabled="userForm.txtFname.$dirty && userForm.txtFname.$invalid
+                                                                        || userForm.txtLname.$dirty && userForm.txtLname.$invalid
+                                                                        || userForm.txtEmail.$dirty && userForm.txtEmail.$invalid"
+                                                       value="Save" />
+                                                <input type="submit" ng-click="reset()" style="margin-left:15px;" value="Cancel" />
+                                            </td>
+
+                                        </script>
+
+                                    </tr>
+
+                                    <tr ng-show="users=='undefined' || users=='null' || users.length==0 || filteredUsers.length==0">
+                                        <td colspan="8" style="padding:15px;" align="center">
+                                            <span style="color:red">
+                                                Oops ! No Record Found
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </table>
+
+                            </td>
+
+                        </tr>
+
+
+                    </table>
+
+                </td>
+            </tr>
+
+            <!-- 4th Row - Footer-->
+
+            <tr>
+                <td class="footer">
+
+                    <table cellspacing="0" cellpadding="0" border="0" width="980">
+
+                        <tr>
+
+                            <td class="footer-left-corner"></td>
+
+                            <td class="footer-item">
+                                Copyright &copy; companyname - All rights reserved
+
+                            </td>
+
+                            <td class="footer-right-corner"></td>
+
+                        </tr>
+
+                    </table>
+
+                </td>
+            </tr>
+
+        </table>
+
+        <!-- userViewModel -->
+        <div class="modal fade" id="userViewModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="background: none !important;" ng-click="reset()">
+                            <img src="~/Images/black_close.png" style="height: 20px; width: 20px;" alt="close" />
+                        </button>
+
+                    </div>
+                    <div class="modal-body" style="min-height: 330px;">
+
+                        <!-- start  -->
+
+                        <div class="popmodel-main-body">
+
+                            <div class="popmodel-main">
+
+                                <div class="main-title">User Details</div>
+
+                                <div class="main-content">
+
+                                    <div class="main-content-title">
+                                        <div id="model_FullName">{{user.FName}}&nbsp;{{user.LName}}</div>
+                                        <hr />
+                                    </div>
+
+                                    <div class="main-content-details">
+
+                                        <div class="main-content-details-data">
+
+                                            <table width="100%" cellpadding="5px" cellspacing="5px" style="border-collapse: collapse;">
+
+                                                <!-- start -->
+
+                                                <tr>
+                                                    <td style="border-right: solid 1px #4579B0">
+                                                        <table cellspacing="5px">
+                                                            <tr>
+                                                                <td class="color-red">First Name</td>
+                                                                <td class="color-red">:</td>
+                                                                <td>
+                                                                    <div id="model_FName">{{user.FName}}</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="color-red">Last Name</td>
+                                                                <td class="color-red">:</td>
+                                                                <td>
+                                                                    <div id="model_LName">{{user.LName}}</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="color-red">User Name</td>
+                                                                <td class="color-red">:</td>
+                                                                <td>
+                                                                    <div id="model_UName">{{user.UName}}</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="color-red">Email</td>
+                                                                <td class="color-red">:</td>
+                                                                <td>
+                                                                    <div id="model_Email">{{user.Email}}</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="color-red">Mobile</td>
+                                                                <td class="color-red">:</td>
+                                                                <td>
+                                                                    <div id="model_Mobile">{{user.MobileNo}}</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3"></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="color-red">Role</td>
+                                                                <td class="color-red">:</td>
+                                                                <td>
+                                                                    <div id="model_Role">{{user.Role}}</div>
+                                                                </td>
+                                                            </tr>
+
+                                                        </table>
+                                                    </td>
+
+                                                    <td align="center">
+                                                        <img id="model_img" src="~/UploadedImages/Alphabets_B.jpg" style="height: 150px; width: 150px; margin: 0px 0px;" alt="Image" />
+                                                    </td>
+                                                </tr>
+
+                                                <!-- end -->
+
+
+                                            </table>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <!-- end -->
+                </div>
+
+                <div class="modal-footer">
+                    &nbsp;
+
+                </div>
+            </div>
+        </div>
+
+        <!-- userAddEditModel -->
+        <div class="modal fade" id="userAddEditModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="background: none !important;" ng-click="reset()">
+                            <img src="~/Images/black_close.png" style="height: 20px; width: 20px;" alt="close" />
+                        </button>
+
+                    </div>
+                    <div class="modal-body" style="min-height: 330px;">
+
+                        <!-- start  -->
+                        <div class="popmodel-main-body">
+
+                            <div class="popmodel-main">
+
+                                <div class="main-title">
+                                    <span data-ng-hide="editMode">
+                                        Add User
+                                    </span>
+                                    <span data-ng-show="editMode">
+                                        Edit User
+                                    </span>
+                                </div>
+
+                                <form name="userForm" novalidate>
+                                    <div class="main-content">
+
+                                        <div class="main-content-details">
+
+                                            <div class="main-content-details-data">
+
+                                                <table width="100%" cellpadding="5px" cellspacing="5px" style="border-collapse: collapse;">
+
+                                                    <!-- start -->
+
+                                                    <tr>
+
+                                                        <!-- Field-1-->
+
+                                                        <td style="width:50%" valign="top">
+
+                                                            <table align="center" cellspacing="5" cellpadding="0" border="0">
+
+                                                                <tr>
+                                                                    <td class="align-right">First Name</td>
+                                                                    <td>&nbsp:&nbsp</td>
+                                                                    <td>
+                                                                        <input type="text" id="textFirstName" name="txtFname" data-ng-model="user.FName" required />
+
+                                                                        <span data-ng-show="addMode">
+                                                                            <span style="color:red" ng-init="userForm.txtFname.$dirty='true';userForm.txtFname.$invalid='true'" ng-show="userForm.txtFname.$dirty && userForm.txtFname.$invalid">
+                                                                                <span ng-show="userForm.txtFname.$error.required">*</span>
+                                                                            </span>
+                                                                        </span>
+
+                                                                        <span data-ng-show="editMode">
+                                                                            <span style="color:red" ng-show="userForm.txtFname.$dirty && userForm.txtFname.$invalid">
+                                                                                <span ng-show="userForm.txtFname.$error.required">*</span>
+                                                                            </span>
+                                                                        </span>
+
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="align-right">Last Name</td>
+                                                                    <td>&nbsp:&nbsp</td>
+                                                                    <td>
+                                                                        <input type="text" id="textLastName" name="txtLname" data-ng-model="user.LName" required />
+
+                                                                        <span data-ng-show="addMode">
+                                                                            <span style="color:red" ng-init="userForm.txtLname.$dirty='true';userForm.txtLname.$invalid='true'" ng-show="userForm.txtLname.$dirty && userForm.txtLname.$invalid">
+                                                                                <span ng-show="userForm.txtLname.$error.required">*</span>
+                                                                            </span>
+                                                                        </span>
+
+                                                                        <span data-ng-show="editMode">
+                                                                            <span style="color:red" ng-show="userForm.txtLname.$dirty && userForm.txtLname.$invalid">
+                                                                                <span ng-show="userForm.txtLname.$error.required">*</span>
+                                                                            </span>
+                                                                        </span>
+
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="align-right">User Name</td>
+                                                                    <td>&nbsp:&nbsp</td>
+                                                                    <td>
+                                                                        <input type="text" id="TextUserName" data-ng-model="user.UName" required />
+                                                                        <span class="color-red"></span>
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="align-right">Mobile Number</td>
+                                                                    <td>&nbsp:&nbsp</td>
+                                                                    <td>
+                                                                        <input type="text" id="TextPhone" data-ng-model="user.MobileNo" required />
+                                                                        <span class="color-red"></span>
+                                                                    </td>
+
+                                                                </tr>
+
+
+                                                            </table>
+
+                                                        </td>
+
+                                                        <!-- Field-2-->
+                                                        <td style="width:50%;" valign="top">
+
+                                                            <table align="left" cellspacing="5" cellpadding="0" border="0">
+
+                                                                <tr>
+                                                                    <td class="align-right">E-Mail</td>
+                                                                    <td>&nbsp;:&nbsp;</td>
+                                                                    <td>
+                                                                        <input type="text" id="textEmail" name="txtEmail" data-ng-model="user.Email" required />
+
+                                                                        <span data-ng-show="addMode">
+                                                                            <span style="color:red" ng-init="userForm.txtEmail.$dirty='true';userForm.txtEmail.$invalid='true'" ng-show="userForm.txtEmail.$dirty && userForm.txtEmail.$invalid">
+                                                                                <span ng-show="userForm.txtEmail.$error.required">*</span>
+                                                                                <span ng-show="userForm.txtEmail.$error.email">Invalid email address.</span>
+                                                                            </span>
+                                                                        </span>
+
+                                                                        <span data-ng-show="editMode">
+                                                                            <span style="color:red" ng-show="userForm.txtEmail.$dirty && userForm.txtEmail.$invalid">
+                                                                                <span ng-show="userForm.txtEmail.$error.required">*</span>
+                                                                                <span ng-show="userForm.txtEmail.$error.email">Invalid email address.</span>
+                                                                            </span>
+                                                                        </span>
+
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td class="align-right">Role</td>
+                                                                    <td>&nbsp;:&nbsp;</td>
+                                                                    <td>
+                                                                        <input type="text" id="TextRole" data-ng-model="user.Role" required />
+                                                                        <span class="color-red"></span>
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <tr data-ng-hide="editMode">
+                                                                    <td class="align-right">Password</td>
+                                                                    <td>&nbsp;:&nbsp;</td>
+                                                                    <td>
+                                                                        <input type="text" id="TextPassword" data-ng-model="user.Password" required />
+                                                                        <span class="color-red"></span>
+                                                                    </td>
+
+                                                                </tr>
+
+                                                                <tr data-ng-hide="editMode">
+                                                                    <td class="align-right">Confirm Password</td>
+                                                                    <td>&nbsp;:&nbsp;</td>
+                                                                    <td>
+                                                                        <input type="text" id="TextConfirmPassword" data-ng-model="user.ConfirmPassword" required />
+                                                                        <span class="color-red"></span>
+                                                                    </td>
+
+                                                                </tr>
+
+                                                            </table>
+
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <!-- end -->
+
+
+                                                </table>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="main-content-title">
+                                            <hr />
+                                            <div id="model_FullName">
+                                                <table width="100%">
+                                                    <tr>
+                                                        <td align="center">
+                                                            <span data-ng-hide="editMode">
+                                                                <input type="submit" ng-disabled="userForm.txtFname.$dirty && userForm.txtFname.$invalid
+                                                                        || userForm.txtLname.$dirty && userForm.txtLname.$invalid
+                                                                        || userForm.txtEmail.$dirty && userForm.txtEmail.$invalid"
+                                                                       ng-click="add()" value="Save" />
+                                                            </span>
+                                                            <span data-ng-show="editMode">
+                                                                <input type="submit" ng-disabled="userForm.txtFname.$dirty && userForm.txtFname.$invalid
+                                                                        || userForm.txtLname.$dirty && userForm.txtLname.$invalid
+                                                                        || userForm.txtEmail.$dirty && userForm.txtEmail.$invalid"
+                                                                       ng-click="update()" value="Update" />
+                                                            </span>
+                                                            &nbsp;|&nbsp;
+                                                            <input type="button" id="btnCancel" value="Cancel" data-ng-click="cancel()" />
+
+
+                                                        </td>
+
+                                                    </tr>
+                                                </table>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- end -->
+
+                </div>
+
+                <div class="modal-footer">
+                    &nbsp;
+
+                </div>
+            </div>
+        </div>
+
+        <!-- userDeleteConfirmationModel -->
+        <div class="modal fade" id="userDeleteConfirmationModel" role="dialog">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" style="background: none !important;" ng-click="reset()">
+                            <img src="~/Images/black_close.png" style="height: 20px; width: 20px;" alt="close" />
+                        </button>
+
+                    </div>
+                    <div class="modal-body" style="min-height: 330px;">
+
+                        <!-- start  -->
+
+                        <div class="popmodel-main-body">
+
+                            <div class="popmodel-main">
+
+                                <div class="main-title">
+                                    <span>
+                                        Confirmation Message
+                                    </span>
+
+                                </div>
+
+                                <div class="main-content">
+
+                                    <div class="main-content-details">
+
+                                        <div class="main-content-details-data">
+
+                                            <span style="margin-left:10px;">Are you sure that you want to delete this record ?</span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="main-content-title">
+                                        <hr />
+                                        <div id="model_FullName">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td align="center">
+                                                        <input type="submit" value="Yes" data-ng-click="delete()" />
+                                                        &nbsp;|&nbsp;
+                                                        <input type="button" id="btnCancel" value="Cancel" data-ng-click="cancel()" />
+                                                    </td>
+
+                                                </tr>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+
+                    <!-- end -->
+                </div>
+
+                <div class="modal-footer">
+                    &nbsp;
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+
+
