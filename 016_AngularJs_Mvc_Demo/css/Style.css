@@ -1,0 +1,404 @@
+﻿body {
+
+  
+    background:url(../images/body_bg.gif) repeat-x;
+      background-color:#e1e1e1;
+    
+    color:#333333;
+    font-size:12px;
+    font-family:Arial;
+
+}
+
+
+h1, h2, h3, h4, h5, h6, p , ul , li , tr , td{
+
+    padding:0px;
+    margin:0px;
+
+}
+
+a {
+
+    text-decoration:none;
+    color:green;
+    font-size:13px;
+}
+
+a:hover {
+
+   color:#0026ff;
+   
+}
+
+
+.header {
+
+    padding:0px;
+    margin:0px;
+    width:100%;
+    
+
+
+}
+
+.header-right {
+
+    width:100%;
+    background-color:#ffd800;
+    float:right;
+    
+
+}
+
+.header-left {
+
+    width:100%;
+    background-color:#b6ff00;
+
+
+   
+
+}
+
+
+
+.menu {
+
+    height:40px;
+    width:980px;
+    padding:0;
+    margin:0;
+
+}
+
+.menu-left-corner {
+   width:5px;
+    background:url(../images/bl_nav_left.gif) no-repeat;
+    height:40px;
+    
+   
+}
+
+
+.menu-item {
+
+    background:url(../images/bl_nav_mid.gif) repeat-x;
+    height:40px;
+
+    padding:0px;
+    margin:0px;
+
+    
+
+}
+
+
+ 
+.menu-right-corner {
+
+  background:url(../images/bl_nav_right.gif) no-repeat;
+    width:5px;
+    height:40px;
+    
+     padding:0px;
+    margin:0px;
+
+}
+
+
+.menu ul {
+
+    padding:0px;
+    margin:0px;
+    list-style:none;
+
+    
+
+}
+
+.menu ul li {
+
+    height:16px;
+    float:left;
+
+    list-style-type:none;
+
+    background:url(../images/bl_nav_spac.gif) no-repeat;
+
+    display:block;
+
+    padding:12px 20px 12px 20px;
+
+    color:#FFFFFF;
+
+
+}
+
+.menu ul li a {
+
+        text-decoration:none;
+
+        color:white;
+
+        display:block !important;
+
+
+
+    }
+
+.menu ul li:hover {
+
+     
+    background-color:#a00500;
+    
+}
+
+
+.li-none {
+
+    background:url(../images/bl_nav_spac.gif) no-repeat !important;
+
+}
+
+.align-right {
+
+
+    text-align:right;
+
+}
+
+
+.text-field {
+
+
+   background:url(../images/login-bg.gif) repeat-x;
+    margin:3px;
+    padding:2px;
+    border:solid 1px #cccccc;
+
+}
+
+.checkbox {
+
+
+    padding:2px;
+    margin:3px;
+
+}
+
+.text {
+
+    text-align:center;
+
+}
+
+button {
+
+    padding:4px 10px 4px 10px;
+     margin:3px;
+     background:url(../images/bl_button.gif) repeat-x;
+     color:#ffffff;
+     border:0px;
+     cursor:pointer;
+     overflow:visible;
+}
+
+
+
+.grid {
+
+    width:100%;
+    padding:0px;
+    border-collapse:collapse;
+
+    border:solid 1px #cad7e7; 
+    
+
+}
+
+
+.grid-top {
+
+    padding:0px;
+    background:url(../images/bl_grid-top-bg.gif);
+    
+
+}
+
+
+.grid td {
+
+    padding:5px;
+
+     border:solid 1px #cad7e7;
+    border-collapse:collapse;
+
+   
+
+}
+
+   
+
+.grid th {
+
+    padding:5px;
+
+    background:url(../images/bl_grid-top-bg.gif) repeat-x;
+
+    border:solid 1px #cad7e7;
+    border-collapse:collapse;
+
+   
+
+    
+}
+
+.grid tr.alter td {
+
+    background-color:#f7faff;
+
+}
+
+.grid tr.white td {
+
+    background-color:#f7faff;
+
+}
+
+
+
+
+
+.footer {
+
+    height:40px;
+    width:980px;
+    padding:0;
+    margin:0;
+
+}
+
+.footer-left-corner {
+   width:5px;
+    background:url(../images/foot_left.gif) no-repeat;
+    height:40px;
+    
+   
+}
+
+
+.footer-item {
+
+    background-color:#ffffff;
+    height:40px;
+
+    text-align:center;
+ 
+    padding:0px;
+    margin:0px;
+
+    
+
+}
+
+
+ 
+.footer-right-corner {
+
+  background:url(../images/foot_right.gif) no-repeat;
+    width:5px;
+    height:40px;
+    
+     padding:0px;
+    margin:0px;
+
+}
+
+
+
+
+a.classname
+{
+    background: url(~/Images/delete.png) no-repeat top left;
+     display: block;
+     width: 15px;
+     height: 15px;
+     text-indent: -9999px; /* hides the link text */
+}
+
+
+
+.td-padding {
+
+
+    min-height:50px;
+    text-align:center;
+    padding:20px;
+    color:red;
+
+}
+
+.tr_visible {
+    display:inline;
+}
+
+.tr_hidden {
+    display:none;
+}
+
+.color-red {
+
+    color:red;
+
+}
+
+.LabelPaddingStyle {
+
+    padding:20px;
+
+}
+
+.LabelPaddingStyleNone {
+
+    padding:0px;
+
+}
+
+/*  start Bootstrap Coding */
+
+.modal-open{overflow:hidden}
+.modal{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1050;display:none;overflow:hidden;-webkit-overflow-scrolling:touch;outline:0}
+.modal.fade .modal-dialog{-webkit-transition:-webkit-transform .3s ease-out;-o-transition:-o-transform .3s ease-out;transition:transform .3s ease-out;-webkit-transform:translate(0,-25%);-ms-transform:translate(0,-25%);-o-transform:translate(0,-25%);transform:translate(0,-25%)}
+.modal.in .modal-dialog{-webkit-transform:translate(0,0);-ms-transform:translate(0,0);-o-transform:translate(0,0);transform:translate(0,0)}
+.modal-open .modal{overflow-x:hidden;overflow-y:auto}
+.modal-dialog{position:relative;width:auto;margin:10px}
+.modal-content{position:relative;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid #999;border:1px solid rgba(0,0,0,.2);border-radius:6px;outline:0;-webkit-box-shadow:0 3px 9px rgba(0,0,0,.5);box-shadow:0 3px 9px rgba(0,0,0,.5)}
+.modal-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;z-index:1040;background-color:#000}
+.modal-backdrop.fade{filter:alpha(opacity=0);opacity:0}
+.modal-backdrop.in{filter:alpha(opacity=50);opacity:.5}
+.modal-header{padding:15px;border-bottom:0px solid #e5e5e5}
+.modal-header .close{margin-top:-2px}
+.modal-title{margin:0;line-height:1.42857143}
+.modal-body{position:relative;padding:15px}
+.modal-footer{padding:15px;text-align:right;border-top:0px solid #e5e5e5}
+.modal-footer .btn+.btn{margin-bottom:0;margin-left:5px}
+.modal-footer .btn-group .btn+.btn{margin-left:-1px}
+.modal-footer .btn-block+.btn-block{margin-left:0}
+.modal-scrollbar-measure{position:absolute;top:-9999px;width:50px;height:50px;overflow:scroll}
+
+.close{position:relative;top:-2px;left:835px;background-color:white !important;
+     color:#700117;}
+
+@media (min-width:768px){
+    .modal-dialog{width:600px;margin:30px auto}
+    .modal-content{-webkit-box-shadow:0 5px 15px rgba(0,0,0,.5);box-shadow:0 5px 15px rgba(0,0,0,.5)}
+    .modal-sm{width:300px}
+
+}
+@media (min-width:992px){
+    .modal-lg{width:900px}
+}
+
+
+/* end Bootstrap coding */
