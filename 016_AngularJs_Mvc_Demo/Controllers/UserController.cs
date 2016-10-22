@@ -13,12 +13,20 @@ namespace _016_AngularJs_Mvc_Demo.Controllers
         //
         // GET: /User/
 
+        /// <summary>
+        /// Indexes this instance.
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
             return View();
         }
 
         // GET: All User
+        /// <summary>
+        /// Gets the user list.
+        /// </summary>
+        /// <returns></returns>
         public JsonResult GetUserList()
         {
             UserDALcls userDALobjList = new UserDALcls();
